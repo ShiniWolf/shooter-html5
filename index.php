@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="js/GameObject.js"></script>
 		<script type="text/javascript" src="js/Menu.js"></script>
 		<script type="text/javascript" src="js/Spaceship.js"></script>
+		<script type="text/javascript" src="js/Player.js"></script>
 		<link rel="stylesheet" media="screen" type="text/css" href="css/style.css" />
 	</head>
 	<body>
