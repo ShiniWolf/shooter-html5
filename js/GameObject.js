@@ -11,8 +11,19 @@ GameObject.prototype.init = function(canvas, ctx) {
 
 GameObject.prototype.draw = function() {
 	var that = this;
+
+	that.beforeUpdate();
 	that.update();
+	that.afterUpdate();
+
+	that.beforeDraw();
 	that.ctx.drawImage(that.image, that.position.left, that.position.top, that.size.width, that.size.height);
+	that.afterDraw();
 };
 
+GameObject.prototype.beforeDraw = function() {};
+GameObject.prototype.afterDraw = function() {};
+
 GameObject.prototype.update = function() {};
+GameObject.prototype.beforeUpdate = function() {};
+GameObject.prototype.afterUpdate = function() {};

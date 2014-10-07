@@ -16,6 +16,31 @@ $(document).ready(function() {
 		player.area.max_x = game.canvas.width - player.size.width;
 		player.area.max_y = game.canvas.height - menu.size.height - player.size.height;
 
+		menu.afterDraw = function() {
+			var position_life = {
+				top: this.position.top + 62,
+				left: this.position.left + 115
+			};
+
+			this.ctx.save();
+			// Draw player's life
+			for (var i = 0; i < player.power; i++) {
+				if(i == 0) this.ctx.fillStyle = 'red';
+				else if(i == 1) this.ctx.fillStyle = 'orange';
+				else this.ctx.fillStyle = 'green';
+
+				this.ctx.fillRect(position_life.left, position_life.top, 10, 25);
+				position_life.left += 20;
+			}
+
+			// Write player's score
+			this.ctx.font = '22pt Tahoma, Arial';
+			this.ctx.fillStyle = 'white';
+			this.ctx.fillText(player.score, this.position.left + 115, this.position.top + 50);
+
+			this.ctx.restore();
+		};
+
 		// Add objects to game
 		game.addObjects([menu, player]);
 		game.initEvent({

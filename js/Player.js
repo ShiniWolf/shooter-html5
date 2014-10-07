@@ -4,6 +4,9 @@ var Player = function(image) {
 	this.direction = { left: false, right: false, top: false, bottom: false };
 	this.area = { min_x: 0, max_x: 0, min_y: 0, max_y: 0 };
 	this.speed = { x: 5, y: 5 };
+	this.score = 0;
+	this.power = 1;
+
 	this.initEvent();
 };
 
