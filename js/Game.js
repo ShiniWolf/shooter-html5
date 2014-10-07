@@ -15,6 +15,7 @@ var Game = function(container, width, height) {
 	this.canvas = this.container.get(0);
 	this.ctx = this.canvas.getContext('2d');
 	this.game_started = false;
+	this.objects = [];
 	this.gameloader = new GameLoader();
 }
 
@@ -31,8 +32,36 @@ Game.prototype.initEvent = function(options) {
 
 	$(document).on('keydown', function(event) {
 		if(event.keyCode == 13 && that.game_started == false) {
-			that.game_started = true;
 			settings.onGameStart();
+			that.game_started = true;
+			that.start();
 		}
+	});
+};
+
+Game.prototype.addObjects = function(objects) {
+	for (var i = 0; i < objects.length; i++) {
+		objects[i].init(this.canvas, this.ctx);
+		this.objects.push(objects[i]);
+	}
+};
+
+Game.prototype.start = function() {
+	this.update();
+};
+
+Game.prototype.update = function() {
+	var that = this;
+	that.ctx.save();
+	that.ctx.fillStyle = 'black';
+	that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
+	that.ctx.restore();
+
+	for (var i = 0; i < that.objects.length; i++) {
+		that.objects[i].draw();
+	}
+
+	requestAnimFrame(function() {
+		that.update();
 	});
 };

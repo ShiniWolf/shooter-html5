@@ -7,6 +7,8 @@
 		<script type="text/javascript" src="js/script.js"></script>
 		<script type="text/javascript" src="js/Game.js"></script>
 		<script type="text/javascript" src="js/GameLoader.js"></script>
+		<script type="text/javascript" src="js/GameObject.js"></script>
+		<script type="text/javascript" src="js/Menu.js"></script>
 		<script type="text/javascript" src="js/Spaceship.js"></script>
 		<link rel="stylesheet" media="screen" type="text/css" href="css/style.css" />
 	</head>
