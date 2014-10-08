@@ -1,9 +1,7 @@
 var Player = function(image) {
 	Spaceship.call(this, image);
-	this.size = { width: 48, height: 48 };
 	this.direction = { left: false, right: false, top: false, bottom: false };
 	this.area = { min_x: 0, max_x: 0, min_y: 0, max_y: 0 };
-	this.speed = { x: 5, y: 5 };
 	this.score = 0;
 	this.power = 1;
 
@@ -29,6 +27,9 @@ Player.prototype.initEvent = function() {
 			case 40:
 				that.direction.bottom = true;
 				break;
+			case 32:
+				that.fire = true;
+				break;
 		}
 	});
 
@@ -46,11 +47,16 @@ Player.prototype.initEvent = function() {
 			case 40:
 				that.direction.bottom = false;
 				break;
+			case 32:
+				that.fire = false;
+				break;
 		}
 	});
 };
 
 Player.prototype.update = function() {
+	this.score++;
+
 	if(this.direction.left && this.position.left > this.area.min_x)
 		this.position.left -= this.speed.x;
 	if(this.direction.right && this.position.left < this.area.max_x)
@@ -59,4 +65,7 @@ Player.prototype.update = function() {
 		this.position.top -= this.speed.y;
 	if(this.direction.bottom && this.position.top < this.area.max_y)
 		this.position.top += this.speed.y;
+
+	if(this.fire && this.rocket_ready)
+		this.shoot();
 };
